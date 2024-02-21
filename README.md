@@ -8,7 +8,7 @@
 unsigned long t0 = 0;
 unsigned long t1 = 0;
 
-inst state = 0;
+int state = 0;
 
 
 void setup()
@@ -29,20 +29,21 @@ void loop()
     case 1: 
   	 digitalWrite (RED, HIGH);
      digitalWrite (GRE, LOW);
-     if (t0 - t1 > 30) [
+    if (t1 - t0 > 10) {
        state = 2;
        t0 = t1;
+    }
      break;
     
     case 2: 
   	 digitalWrite (YEL, HIGH);
      digitalWrite (RED, LOW);
-       if (t0 - t1 > 3 && state == 2) {
+       if (t1 - t0 > 3 && state == 2) {
        state = 3;
        t0 = t1;
        }
        else if (t0 - t1 > 3 && state == 3) {
-         staet = 1;
+         state = 1;
          t0 = t1;
        }
         break;
@@ -50,9 +51,11 @@ void loop()
     case 3: 
   	 digitalWrite (GRE, HIGH);
      digitalWrite (YEL, LOW);
-     if (t0 - t1 > 30) [
+    if (t1 - t0 > 10) {
        state = 2;
        t0 = t1;
+    }
      break;
+  }}
 }
 ```c++
